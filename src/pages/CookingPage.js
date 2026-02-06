@@ -1,10 +1,33 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 function CookingPage() {
+    const cuisines = [
+        'Italian',
+        'Chinese',
+        'Mexican',
+        'Indian',
+        'Thai',
+        'Japanese',
+        'Mediterranean',
+        'American'
+    ]
+
     return (
         <div className="container">
             <h1>What type of food do you want to cook?</h1>
-            <p>Here are some recipes based on your ingredients...</p>
+            <Form>
+                {cuisines.map((cuisines) => (
+                    <div key={cuisines} className='mb-3'>
+                        <Form.Check // prettier-ignore 
+                            type="checkbox"
+                            id={`cuisines-${cuisines}`}
+                            label={cuisines}
+                        />
+                    </div>
+                ))}
+
+            </Form>
         </div>
     );
 }
