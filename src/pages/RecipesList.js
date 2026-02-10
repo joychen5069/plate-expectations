@@ -18,7 +18,7 @@ function RecipeList() {
             const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
             try {
                 const response = await fetch(
-                    `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisineQuery}&apiKey=${API_KEY}&number=9`
+                    `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisineQuery}&apiKey=${API_KEY}&number=100`
                 );
                 const data = await response.json();
                 setRecipes(data.results);
@@ -40,7 +40,7 @@ function RecipeList() {
 
     return (
         <Container className="mt-5">
-            <h2>Results for: {cuisineQuery.replace(',', ', ')}</h2>
+            <h2>Results for: {cuisineQuery.replace(',', ', ')} recipes</h2>
             <Row>
                 {recipes.map((recipe) => (
                     <Col key={recipe.id} md={4} className="mb-4">
