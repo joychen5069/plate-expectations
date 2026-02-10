@@ -12,7 +12,6 @@ function RecipeList() {
     const cuisineQuery = searched.get('cuisine')
 
     useEffect(() => {
-        console.log("API KEY: ", process.env.REACT_APP_SPOONACULAR_API_KEY)
 
         const fetchRecipes = async () => {
             setLoading(true);
@@ -23,6 +22,7 @@ function RecipeList() {
                 );
                 const data = await response.json();
                 setRecipes(data.results);
+                console.log(data.results)
             } catch (error) {
                 console.log('something is very wrong')
                 console.error("Error fetching recipes: ", error)
