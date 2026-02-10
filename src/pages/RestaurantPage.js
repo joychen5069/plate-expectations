@@ -2,27 +2,25 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 
 function RestaurantPage() {
-    const cuisines = [
-        'Italian',
-        'Chinese',
-        'Mexican',
-        'Indian',
-        'Thai',
-        'Japanese',
-        'Mediterranean',
-        'American'
-    ]
+    const cuisine = [
+        'African', 'American', 'British', 'Cajun', 'Caribbean',
+        'Chinese', 'Eastern European', 'European', 'French',
+        'German', 'Greek', 'Indian', 'Irish', 'Italian',
+        'Japanese', 'Jewish', 'Korean', 'Latin American',
+        'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic',
+        'Southern', 'Spanish', 'Thai', 'Vietnamese'
+    ];
 
     return (
         <div className="container">
             <h1>What type of food do you want to eat?</h1>
             <Form>
-                {cuisines.map((cuisines) => (
-                    <div key={cuisines} className='mb-3'>
+                {cuisine.map((uisines) => (
+                    <div key={uisines} className='mb-3'>
                         <Form.Check // prettier-ignore 
                             type="checkbox"
-                            id={`cuisines-${cuisines}`}
-                            label={cuisines}
+                            id={`uisines-${uisines}`}
+                            label={uisines}
                         />
                     </div>
                 ))}
