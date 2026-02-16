@@ -5,28 +5,29 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 
-function RecipeList() {
-    const [searched] = useSearchParams();
-    const [recipes, setRecipes] = useState([]);
+function RecipeDetails() {
+    const [searchParams] = useSearchParams();
+    const id = searchParams.get("id");
+    const [recipeDetails, setRecipeDetails] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const cuisineQuery = searched.get('cuisine')
+    // const cuisineQuery = searched.get('cuisine')
     const navigate = useNavigate()
 
     // const [recipeID, setRecipeID] = useState('')
 
     useEffect(() => {
 
-        const fetchRecipes = async () => {
+        const fetchDetails = async () => {
             setLoading(true);
             const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
             try {
                 const response = await fetch(
-                    `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisineQuery}&apiKey=${API_KEY}&number=100`
+                    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
                 );
                 const data = await response.json();
-                setRecipes(data.results);
-                console.log(data.results)
+                // setRecipesDetails(data.results);
+                console.log(data)
             } catch (error) {
                 console.log('something is very wrong')
                 console.error("Error fetching recipes: ", error)
@@ -35,10 +36,10 @@ function RecipeList() {
             }
 
         };
-        if (cuisineQuery) fetchRecipes();
+        if (id) fetchDetails();
 
     },
-        [cuisineQuery]);
+        [id]);
 
     if (loading) return <Spinner animation="border" className="m-5" />;
 
@@ -49,9 +50,9 @@ function RecipeList() {
 
     return (
         <Container className="mt-5">
-            <h2>Results for: {cuisineQuery.replace(',', ', ')} recipes</h2>
-            <Row>
-                {recipes.map((recipe) => (
+            <h2> LOADED </h2>
+            {/* <Row>
+                {recipeDetails.map((recipe) => (
                     <Col key={recipe.id} md={4} className="mb-4">
                         <Card>
                             <Card.Img variant="top" src={recipe.image} />
@@ -67,9 +68,9 @@ function RecipeList() {
                         </Card>
                     </Col>
                 ))}
-            </Row>
+            </Row> */}
         </Container>
     )
 };
 
-export default RecipeList
+export default RecipeDetails

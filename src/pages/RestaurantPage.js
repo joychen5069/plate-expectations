@@ -15,12 +15,12 @@ function RestaurantPage() {
         <div className="container">
             <h1>What type of food do you want to eat?</h1>
             <Form>
-                {cuisine.map((uisines) => (
-                    <div key={uisines} className='mb-3'>
+                {cuisine.map((cuisines) => (
+                    <div key={cuisines} className='mb-3'>
                         <Form.Check // prettier-ignore 
                             type="checkbox"
-                            id={`uisines-${uisines}`}
-                            label={uisines}
+                            id={`cuisines-${cuisines}`}
+                            label={cuisines}
                         />
                     </div>
                 ))}

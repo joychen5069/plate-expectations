@@ -4,22 +4,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/LandingPage';
 import CookingPage from './pages/CookingPage';
 import RestaurantPage from './pages/RestaurantPage';
-import RecipeList from './pages/RecipesList'
+import RecipeList from './pages/RecipesList';
+import RecipeDetails from './pages/RecipeDetailsPage';
 
 function App() {
   return (
     <Router>
       <div className="App bg-primary-dark">
         <Routes>
-          {/* The default page people see first */}
           <Route path="/" element={<Landing />} />
 
-          {/* The cuisine selection page */}
           <Route path="/cook" element={<CookingPage />} />
 
           <Route path="/recipes" element={<RecipeList />} />
 
-          {/* The page that displays the Spoonacular results */}
+          <Route path="/recipe-details" element={<RecipeDetails />} />
+
           <Route path="/restaurant" element={<RestaurantPage />} />
         </Routes>
       </div>
