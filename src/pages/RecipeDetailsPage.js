@@ -26,7 +26,7 @@ function RecipeDetails() {
                     `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
                 );
                 const data = await response.json();
-                // setRecipesDetails(data.results);
+                setRecipeDetails(data);
                 console.log(data)
             } catch (error) {
                 console.log('something is very wrong')
@@ -43,32 +43,25 @@ function RecipeDetails() {
 
     if (loading) return <Spinner animation="border" className="m-5" />;
 
-    const recipeSearch = (id) => {
-        console.log("recipe ID: ", id)
-        navigate(`/recipe-details?id=${id}`)
-    }
 
     return (
         <Container className="mt-5">
-            <h2> LOADED </h2>
-            {/* <Row>
-                {recipeDetails.map((recipe) => (
-                    <Col key={recipe.id} md={4} className="mb-4">
-                        <Card>
-                            <Card.Img variant="top" src={recipe.image} />
-                            <Card.Body>
-                                <Card.Title>{recipe.title}</Card.Title>
-                                <Button
-                                    className="btn btn-link"
-                                    onClick={() => recipeSearch(recipe.id)}
-                                >
-                                    {recipe.title}
-                                </Button>
-                            </Card.Body>
+            <h2> {recipeDetails.title} </h2>
+            <Row>
+                <Col md={4} className="mb-4">
+                    <Card>
+                        <Card.Img variant="top" src={recipeDetails.image} />
+                    </Card>
+                </Col>
+                <Col md={8} className="mb-4">
+                    {recipeDetails.extendedIngredients?.map((ingredients) => (
+                        <Card key={ingredients.id}>
+                            <Card.Body> {ingredients.original}</Card.Body>
                         </Card>
-                    </Col>
-                ))}
-            </Row> */}
+                    ))}
+
+                </Col>
+            </Row>
         </Container>
     )
 };
